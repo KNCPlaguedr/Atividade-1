@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.xml.xpath.XPathFunctionException;
 
 
@@ -56,9 +57,37 @@ public class ProdutosDAO {
          
     }
     
-    public ArrayList<ProdutosDTO> listarProdutos(){
+    public static ArrayList<ProdutosDTO> listarProdutos() throws SQLException{
         
-        return listagem;
+        List<ProdutosDTO> listagem = new ArrayList<ProdutosDTO>();
+        
+        try{
+            
+            //Puxa conexão com o banco de dados
+            conectaDAO conexao = new conectaDAO();
+            conexao.conectar();
+            
+            String sql = "select * from produtos";
+        PreparedStatement consulta = conexao.getConexao().prepareStatement(sql);
+        
+        ResultSet resposta = consulta.executeQuery();
+        
+        while(resposta.next()){
+            ProdutosDTO produto = new ProdutosDTO();
+            produto.setId(resposta.getInt("id"));
+            produto.setNome(resposta.getString("nome"));
+            produto.setValor(resposta.getInt("valor"));
+            produto.setStatus(resposta.getString("status"));
+            
+            listagem.add(produto);
+            
+        }
+           conexao.desconectar();
+    } catch (SQLException se) {
+        
+    } 
+        
+        return (ArrayList<ProdutosDTO>) listagem;
     }
     
     

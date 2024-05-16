@@ -1,5 +1,9 @@
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -18,7 +22,14 @@ public class listagemVIEW extends javax.swing.JFrame {
      */
     public listagemVIEW() {
         initComponents();
-        listarProdutos();
+        
+        try {
+            inicializarTabela();
+            
+            //listarProdutos();
+        } catch (SQLException ex) {
+            Logger.getLogger(listagemVIEW.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -140,8 +151,12 @@ public class listagemVIEW extends javax.swing.JFrame {
         
         ProdutosDAO produtosdao = new ProdutosDAO();
         
-        //produtosdao.venderProduto(Integer.parseInt(id));
-        listarProdutos();
+        try {
+            //produtosdao.venderProduto(Integer.parseInt(id));
+            inicializarTabela();
+        } catch (SQLException ex) {
+            Logger.getLogger(listagemVIEW.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
@@ -187,6 +202,35 @@ public class listagemVIEW extends javax.swing.JFrame {
             }
         });
     }
+    
+     public DefaultTableModel montarTabela() throws SQLException{
+        List<ProdutosDTO> todos = ProdutosDAO.listarProdutos();
+        
+        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.addColumn("id");
+        tableModel.addColumn("Nome");
+        tableModel.addColumn("Valor");
+        tableModel.addColumn("Status");
+        
+        for(ProdutosDTO p : todos){
+            String[] rowData = {
+                p.getId().toString(),
+                p.getNome(),
+                p.getValor().toString(),
+                p.getStatus()
+};
+tableModel.addRow(rowData);
+}
+return tableModel;
+    }
+                    
+    private void configurarTabela() throws SQLException {
+    listaProdutos.setModel(montarTabela());
+}
+      
+      public void inicializarTabela() throws SQLException {
+    configurarTabela();
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVendas;
@@ -201,25 +245,26 @@ public class listagemVIEW extends javax.swing.JFrame {
     private javax.swing.JTable listaProdutos;
     // End of variables declaration//GEN-END:variables
 
-    private void listarProdutos(){
-        try {
-            ProdutosDAO produtosdao = new ProdutosDAO();
-            
-            DefaultTableModel model = (DefaultTableModel) listaProdutos.getModel();
-            model.setNumRows(0);
-            
-            ArrayList<ProdutosDTO> listagem = produtosdao.listarProdutos();
-            
-            for(int i = 0; i < listagem.size(); i++){
-                model.addRow(new Object[]{
-                    listagem.get(i).getId(),
-                    listagem.get(i).getNome(),
-                    listagem.get(i).getValor(),
-                    listagem.get(i).getStatus()
-                });
-            }
-        } catch (Exception e) {
-        }
+}
+    /* private void listarProdutos(){
+    try {
+    ProdutosDAO produtosdao = new ProdutosDAO();
+    
+    DefaultTableModel model = (DefaultTableModel) listaProdutos.getModel();
+    model.setNumRows(0);
+    
+    ArrayList<ProdutosDTO> listagem = produtosdao.listarProdutos();
+    
+    for(int i = 0; i < listagem.size(); i++){
+    model.addRow(new Object[]{
+    listagem.get(i).getId(),
+    listagem.get(i).getNome(),
+    listagem.get(i).getValor(),
+    listagem.get(i).getStatus()
+    });
+    }
+    } catch (Exception e) {
+    }
     
     }
-}
+    }*/
