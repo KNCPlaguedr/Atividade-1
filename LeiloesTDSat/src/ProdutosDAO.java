@@ -12,7 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.xml.xpath.XPathFunctionException;
 
 
 public class ProdutosDAO {
@@ -22,12 +24,36 @@ public class ProdutosDAO {
     ResultSet resultset;
     ArrayList<ProdutosDTO> listagem = new ArrayList<>();
     
-    public void cadastrarProduto (ProdutosDTO produto){
+    public static boolean cadastrarProduto (ProdutosDTO produto) throws SQLException{
         
+        try{
+            //Puxa conexão com o banco de dados
+            conectaDAO conexao = new conectaDAO();
+            conexao.conectar();
+
+            //String do comando sql
+            String sql = "insert into produtos (nome, valor, status) VALUES(?,?,?);";
+
+            PreparedStatement query = conexao.getConexao().prepareStatement(sql);
+
+            //Insere os valores no campo destinados aos inserts
+            query.setString(1, produto.getNome());
+            query.setString(2, produto.getValor().toString());
+            query.setString(3, produto.getStatus());
+
+            //executa o comando
+            query.execute();
+
+            //desconecta
+            conexao.desconectar();
+            return true;
         
-        //conn = new conectaDAO().connectDB();
+                }catch(SQLException se){
+            System.out.println(se);
+            return false;
+        }
         
-        
+         
     }
     
     public ArrayList<ProdutosDTO> listarProdutos(){
