@@ -148,11 +148,20 @@ public class listagemVIEW extends javax.swing.JFrame {
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
         String id = id_produto_venda.getText();
-        
-        ProdutosDAO produtosdao = new ProdutosDAO();
-        
+  
+
+ ProdutosDAO p = new ProdutosDAO();
+
+
         try {
-            //produtosdao.venderProduto(Integer.parseInt(id));
+            p.venderProduto(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(listagemVIEW.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+           
+
             inicializarTabela();
         } catch (SQLException ex) {
             Logger.getLogger(listagemVIEW.class.getName()).log(Level.SEVERE, null, ex);

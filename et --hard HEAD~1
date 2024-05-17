@@ -1,0 +1,42 @@
+[33mcommit 1324a332d0d775dd3cb42eb16b963a5f33a6c8df[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: 294006c 5f2c91f
+Author: Luiz Vinicius Cunha Maciel <viniciuspalmeirense75@gmail.com>
+Date:   Thu May 16 19:53:51 2024 -0300
+
+    Merge branch 'master' of https://github.com/KNCPlaguedr/Atividade-1
+
+[33mcommit 294006c4983dafb668034549f117c49dbb8c4dce[m
+Author: Luiz Vinicius Cunha Maciel <viniciuspalmeirense75@gmail.com>
+Date:   Thu May 16 19:51:43 2024 -0300
+
+    Listagem de produtos funcionando
+
+[33mcommit 5f2c91f6f848ea8a7780698e50e7e6b7a54878c1[m
+Author: Luiz Vinicius Cunha Maciel <120053926+KNCPlaguedr@users.noreply.github.com>
+Date:   Thu May 16 19:18:59 2024 -0300
+
+    Update README.md
+
+[33mcommit d1dc9a38a45eda91d17f48438041ceaa977bc6fb[m
+Author: Luiz Vinicius Cunha Maciel <120053926+KNCPlaguedr@users.noreply.github.com>
+Date:   Thu May 16 19:18:45 2024 -0300
+
+    Update README.md
+
+[33mcommit 4065e751215b28dd83a4568ce9e61c8095a4adc7[m
+Author: Luiz Vinicius Cunha Maciel <viniciuspalmeirense75@gmail.com>
+Date:   Thu May 16 18:43:06 2024 -0300
+
+    botão de salvar cadastrando produto
+
+[33mcommit 2c345b3a7f08cc6db565d0dbced031db19328b60[m
+Author: Luiz Vinicius Cunha Maciel <120053926+KNCPlaguedr@users.noreply.github.com>
+Date:   Thu May 16 15:31:30 2024 -0300
+
+    Create README.md
+
+[33mcommit 6564974899ae7e839a854bbaa85cfd4e0107326b[m
+Author: Luiz Vinicius Cunha Maciel <viniciuspalmeirense75@gmail.com>
+Date:   Thu May 16 15:27:46 2024 -0300
+
+    Projeto inicial

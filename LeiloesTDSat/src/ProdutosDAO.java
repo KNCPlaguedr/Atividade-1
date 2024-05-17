@@ -90,8 +90,33 @@ public class ProdutosDAO {
         return (ArrayList<ProdutosDTO>) listagem;
     }
     
-    
+    public static boolean venderProduto(String id) throws SQLException{
+        
+        try{
+         //Puxa conexão com o banco de dados
+            conectaDAO conexao = new conectaDAO();
+            conexao.conectar();
+            
+            String sql = "update produtos set status = ? where id = ?";
+            PreparedStatement query = conexao.getConexao().prepareStatement(sql);
+            
+            query.setString(1, "Vendido");
+            query.setString(2, String.valueOf(id));
+            
+              query.execute();
+
+            //desconecta
+            conexao.desconectar();
+            return true;
+        
+                }catch(SQLException se){
+            System.out.println(se);
+            return false;
+        }
+        
+    }
+}
     
         
-}
+
 
