@@ -116,7 +116,7 @@ public class ProdutosDAO {
         
     }
     
-    /* public static ArrayList<ProdutosDTO> listarProdutosVendidos() throws SQLException{
+     public static ArrayList<ProdutosDTO> listarProdutosVendidos() throws SQLException{
     
     List<ProdutosDTO> listagem = new ArrayList<ProdutosDTO>();
     
@@ -147,7 +147,7 @@ public class ProdutosDAO {
     }
     
     return (ArrayList<ProdutosDTO>) listagem;
-    }*/
+    }
     
 }
     

@@ -15,14 +15,14 @@ public class listagemVendidosVIEW extends javax.swing.JFrame {
     public listagemVendidosVIEW() {
         initComponents();
         
-       /* try {
+        try {
             inicializarTabela();
             
             //listarProdutos();
         } catch (SQLException ex) {
             Logger.getLogger(listagemVIEW.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
+        
        
     }
 
@@ -135,8 +135,8 @@ public class listagemVendidosVIEW extends javax.swing.JFrame {
             }
         });
     }
-    
-    /* public DefaultTableModel montarTabela() throws SQLException{
+   
+     public DefaultTableModel montarTabela() throws SQLException{
     List<ProdutosDTO> todos = ProdutosDAO.listarProdutosVendidos();
     
     DefaultTableModel tableModel = new DefaultTableModel();
@@ -163,8 +163,8 @@ public class listagemVendidosVIEW extends javax.swing.JFrame {
     
     public void inicializarTabela() throws SQLException {
     configurarTabela();
-    }*/
-    
+    }
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
