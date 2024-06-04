@@ -90,8 +90,67 @@ public class ProdutosDAO {
         return (ArrayList<ProdutosDTO>) listagem;
     }
     
+    public static boolean venderProduto(String id) throws SQLException{
+        
+        try{
+         //Puxa conexão com o banco de dados
+            conectaDAO conexao = new conectaDAO();
+            conexao.conectar();
+            
+            String sql = "update produtos set status = ? where id = ?";
+            PreparedStatement query = conexao.getConexao().prepareStatement(sql);
+            
+            query.setString(1, "Vendido");
+            query.setString(2, String.valueOf(id));
+            
+              query.execute();
+
+            //desconecta
+            conexao.desconectar();
+            return true;
+        
+                }catch(SQLException se){
+            System.out.println(se);
+            return false;
+        }
+        
+    }
     
+     public static ArrayList<ProdutosDTO> listarProdutosVendidos() throws SQLException{
+    
+    List<ProdutosDTO> listagem = new ArrayList<ProdutosDTO>();
+    
+    try{
+    
+    //Puxa conexão com o banco de dados
+    conectaDAO conexao = new conectaDAO();
+    conexao.conectar();
+    
+    String sql = "select * from produtos where status = 'Vendido'";
+    PreparedStatement consulta = conexao.getConexao().prepareStatement(sql);
+    
+    ResultSet resposta = consulta.executeQuery();
+    
+    while(resposta.next()){
+    ProdutosDTO produto = new ProdutosDTO();
+    produto.setId(resposta.getInt("id"));
+    produto.setNome(resposta.getString("nome"));
+    produto.setValor(resposta.getInt("valor"));
+    produto.setStatus(resposta.getString("status"));
+    
+    listagem.add(produto);
+    
+    }
+    conexao.desconectar();
+    } catch (SQLException se) {
+    
+    }
+    
+    return (ArrayList<ProdutosDTO>) listagem;
+    }
+    
+}
     
         
-}
+
 
